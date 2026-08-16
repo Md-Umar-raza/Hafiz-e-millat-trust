@@ -2,7 +2,7 @@ const CONFIG = {
   membershipAmount: 100,
   paymentNumber: "9955780805",
   adminEmail: "trusthafuzemillat@gmail.com",
-  appsScriptUrl: "https://script.google.com/macros/s/AKfycbw2HNk2Rl7-KF8ODoevzbbioUQz-0QVdpBc3EH9z4KkEC9Cy8FNEYUm6BlOtoGDPsVoqg/exec", // Paste your deployed Apps Script Web App URL here.
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbxnyRHiBa0tfy_GTwrevrtI6NlQDXPhqhFfZY9ZgXi2MB1YZJ10PemZG-McWe8qmu59Rg/exec", // Paste your deployed Apps Script Web App URL here.
   monthsStart: "2026-01",
   monthsEnd: "2027-12"
 };
