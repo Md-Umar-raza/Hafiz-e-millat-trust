@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b3d2e">
+<title>Hafiz-e-Millat Trust | Khidmat • Membership • Education</title>
+<link rel="icon" href="assets/logo.jpg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="Hafiz-e-Millat Trust">
+      <img src="assets/logo.jpg" alt="Hafiz-e-Millat Trust logo">
+      <div><strong>HAFIZ-E-MILLAT</strong><span>TRUST MOKAMO</span></div>
+    </a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#trust">Trust</a>
+      <a href="#members">Members</a>
+      <a href="#khidmat">Khidmat</a>
+      <a href="#books">Books</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-cta" onclick="openPayment()">Pay Membership</button>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="hero-slides" id="heroSlides"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="eyebrow">HAFIZ-E-MILLAT TRUST • MOKAMO</div>
+    <h1>𝘡𝘢𝘮𝘦𝘦𝘯 𝘒𝘦 𝘜𝘱𝘢𝘳 𝘒𝘢𝘢𝘮,<br><em>𝘖𝘳 𝘡𝘢𝘮𝘦𝘦𝘯 𝘒𝘦 𝘕𝘪𝘤𝘩𝘦 𝘈𝘢𝘳𝘢𝘮…</em> 🪶</h1>
+    <p>Khidmat, taleem aur zarooratmand parivaron tak madad pahunchane ki ek musalsal koshish.</p>
+    <div class="hero-actions">
+      <button class="btn primary" onclick="openPayment()">Pay Your Membership <span>₹100 / month</span></button>
+      <a class="btn ghost" href="#khidmat">See Our Khidmat</a>
+    </div>
+    <div class="hero-dots" id="heroDots"></div>
+  </div>
+</section>
+
+<section class="ticker">
+  <div class="ticker-inner">
+    <span>✦ MONTHLY MEMBERSHIP</span><b>₹100 / MONTH</b>
+    <span>✦ CURRENT CYCLE</span><b id="currentMonthLabel">AUGUST 2026</b>
+    <span>✦ TRUST EMAIL</span><b>trusthafuzemillat@gmail.com</b>
+  </div>
+</section>
+
+<section class="section intro">
+ <div class="container split">
+   <div>
+    <span class="kicker">OUR PURPOSE</span>
+    <h2>Khidmat ko ek <em>amanat</em> ki tarah nibhana.</h2>
+    <p>Har mahine membership se jama hone wali rakam ko transparent record ke saath manage karne, books aur taleemi resources share karne, aur zarooratmand families tak madad pahunchane ka platform.</p>
+    <div class="mini-stats"><div><b>₹100</b><span>Monthly</span></div><div><b>24</b><span>Months tracked</span></div><div><b>30+</b><span>Members</span></div></div>
+   </div>
+   <div class="quote-card"><div class="quote-mark">“</div><p>Jo kuch bhi hum karte hain, uska maqsad insaniyat ki khidmat aur nek kaam ko aasaan banana hai.</p><span>— Hafiz-e-Millat Trust</span></div>
+ </div>
+</section>
+
+<section id="trust" class="section dark-section">
+ <div class="container">
+  <div class="section-head"><div><span class="kicker light">TRUST MEMBERS</span><h2>Trust leadership</h2></div><span class="pill">Office Bearers</span></div>
+  <div class="trust-grid" id="trustGrid"></div>
+ </div>
+</section>
+
+<section id="members" class="section">
+ <div class="container">
+  <div class="section-head"><div><span class="kicker">MEMBERSHIP DIRECTORY</span><h2>General Members</h2><p>Har member ka basic public profile. Payment details sirf admin view mein.</p></div>
+  <button class="btn outline" onclick="openAllMembers()">View All Members</button></div>
+  <div class="member-tools"><input id="memberSearch" oninput="renderMembers()" placeholder="Search name or member ID…"><select id="memberFilter" onchange="renderMembers()"><option value="all">All members</option><option value="paid">Some paid</option><option value="due">Has dues</option></select></div>
+  <div class="member-grid" id="memberGrid"></div>
+ </div>
+</section>
+
+<section id="khidmat" class="section soft">
+ <div class="container">
+  <div class="section-head"><div><span class="kicker">KHIDMAT</span><h2>Zameen par kaam</h2><p>Jo updates aap Google Sheet mein add karenge, woh yahan automatically aa sakte hain.</p></div><span class="pill gold">Impact Gallery</span></div>
+  <div class="impact-grid">
+    <article class="impact-card large"><img src="assets/help-family-blurred.png" alt="Food package delivered to a family"><div><span>FOOD SUPPORT</span><h3>Monthly ration for a needy family</h3><p>Ek family ke liye ration support — documented through the trust's khidmat record.</p></div></article>
+    <article class="impact-card"><img src="assets/help-supplies.png" alt="Food supplies"><div><span>RATIONS</span><h3>Essential food supplies</h3></div></article>
+    <article class="impact-card"><img src="assets/food-package.png" alt="Food package"><div><span>FOOD PACKAGE</span><h3>₹1,300 one-month ration package</h3></div></article>
+  </div>
+ </div>
+</section>
+
+<section id="books" class="section">
+ <div class="container">
+  <div class="section-head"><div><span class="kicker">ILMI RESOURCES</span><h2>Books & PDFs</h2><p>Admin Google Drive/Sheet se books add karega. Visitors yahan read/open kar sakte hain.</p></div><button class="btn outline" onclick="showToast('Books are loaded from your Google Sheet when the Apps Script URL is connected.')">How it works</button></div>
+  <div class="books-grid" id="booksGrid">
+    <article class="book-card"><div class="book-cover">PDF</div><div><span>DEMO BOOK</span><h3>Islamic Knowledge — Replace this title</h3><p>Upload your PDF in Drive and put its view URL in the Books sheet.</p><button class="text-btn" onclick="showToast('Replace this demo book from the Books sheet.')">Read book →</button></div></article>
+    <article class="book-card"><div class="book-cover">PDF</div><div><span>DEMO BOOK</span><h3>Qur'an & Sunnah Notes</h3><p>Demo placeholder — ready for your own PDF.</p><button class="text-btn" onclick="showToast('Replace this demo book from the Books sheet.')">Read book →</button></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="section pay-banner">
+ <div class="container pay-wrap">
+  <div><span class="kicker light">MONTHLY MEMBERSHIP</span><h2>Is mahine ki membership jama karein.</h2><p>₹100 per month • Jan 2026 se Dec 2027 tak month-wise tracking.</p></div>
+  <button class="btn white" onclick="openPayment()">Pay ₹100 Membership →</button>
+ </div>
+</section>
+
+<section id="contact" class="section">
+ <div class="container">
+  <div class="section-head"><div><span class="kicker">CONTACT US</span><h2>Trust se rabta karein</h2></div></div>
+  <div class="contact-grid">
+   <div class="contact-card"><span>EMAIL</span><a href="mailto:trusthafuzemillat@gmail.com">trusthafuzemillat@gmail.com</a><p>Official trust email</p></div>
+   <div class="contact-card"><span>PAYMENT</span><b>9955780805</b><p>UPI / membership payment</p></div>
+   <div class="contact-card"><span>SOCIAL MEDIA</span><b>@hafiz_e_millat_trust</b><p>Replace with your final Instagram handle</p></div>
+  </div>
+  <div class="social-row">
+   <a href="#" onclick="showToast('Replace WhatsApp Group URL in Settings / Sheet');return false;">WhatsApp Group</a>
+   <a href="#" onclick="showToast('Replace WhatsApp Channel URL in Settings / Sheet');return false;">WhatsApp Channel</a>
+   <a href="#" onclick="showToast('Replace Instagram URL in Settings / Sheet');return false;">Instagram</a>
+   <a href="#" onclick="openAdmin()">Admin Login</a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><div class="container footer-inner"><div><img src="assets/logo.jpg"><b>Hafiz-e-Millat Trust</b></div><span>Khidmat • Taleem • Amanat</span><small>credit@umar-ri</small></div></footer>
+
+<!-- Payment page -->
+<div class="payment-page" id="paymentPage" aria-hidden="true">
+ <div class="payment-page-backdrop" onclick="closePaymentPage()"></div>
+ <div class="payment-page-shell">
+  <button class="payment-page-close" onclick="closePaymentPage()" aria-label="Close payment page">×</button>
+  <div class="payment-main">
+   <div class="payment-page-head">
+    <span class="kicker">MONTHLY MEMBERSHIP</span>
+    <h2>Pay Your Membership</h2>
+    <p>Select the month, pay ₹100 by UPI and upload your screenshot. Admin verification ke baad record update hoga.</p>
+   </div>
+   <form id="paymentForm" onsubmit="submitPayment(event)">
+    <div class="selected-month-box">
+      <label>Month<select name="month" id="paymentMonth"></select></label>
+      <div><span>AMOUNT</span><strong>₹100</strong></div>
+    </div>
+    <label class="field-label">Full Name<input name="name" required placeholder="Your full name"></label>
+    <div class="form-grid">
+      <label>Email<input type="email" name="email" required placeholder="you@example.com"></label>
+      <label>Phone<input name="phone" required placeholder="+91"></label>
+    </div>
+    <label class="field-label">Membership ID (if issued)<input name="memberId" placeholder="HMT-001"></label>
+    <div class="payment-green-box">
+      <div class="payment-green-head"><div><h3>Pay Membership</h3><p>UPI ID: <b>9955780805@upi</b></p></div></div>
+      <img src="assets/payment-qr.png" alt="UPI payment QR code">
+      <strong>₹100 for selected month</strong>
+    </div>
+    <label class="field-label">Payment Screenshot<input type="file" name="screenshot" accept="image/*" required><small>Payment screenshot upload karein. Admin verify karega.</small></label>
+    <button class="btn primary full" type="submit">Submit Membership Payment</button>
+   </form>
+  </div>
+  <aside class="dues-panel">
+    <span class="kicker">PAY YOUR DUES</span>
+    <h3>Clear pending months</h3>
+    <p>Multiple months select karein. Total ₹100 per month automatically calculate hoga.</p>
+    <div id="duesList" class="dues-list"></div>
+    <div class="dues-total"><span>Total Due Selected</span><strong id="duesTotal">₹0</strong></div>
+    <button class="btn outline full" type="button" onclick="useSelectedDuesForPayment()">Pay Selected Dues</button>
+  </aside>
+ </div>
+</div>
+
+<!-- Member modal -->
+<div class="modal" id="memberModal"><div class="modal-backdrop" onclick="closeModal('memberModal')"></div><div class="modal-card"><button class="close" onclick="closeModal('memberModal')">×</button><div id="memberDetail"></div></div></div>
+
+<!-- Admin modal -->
+<div class="modal" id="adminModal"><div class="modal-backdrop" onclick="closeModal('adminModal')"></div><div class="modal-card wide"><button class="close" onclick="closeModal('adminModal')">×</button><div id="adminContent"></div></div></div>
+
+<div class="toast" id="toast"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
