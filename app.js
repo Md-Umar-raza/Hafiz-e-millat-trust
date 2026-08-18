@@ -13,7 +13,7 @@ const CONFIG = {
 // ================================
 
 const localMembers = [
-  {"id":"HMT-001","name":"TOFIK ZIYA","paid":200,"due":500,"email":"member@example.com","phone":"+91 90000 00000","photo":"assets/member-placeholder.svg"},
+  {"id":"HMT-001","name":"TOFIK ZIYA","paid":200,"due":500,"email":"member@example.com","phone":"+91 90000 00000","photo":"https://drive.google.com/file/d/1u_OHsMIVtZwyY0eRLAsW0vfRQZ_BcqrN/view?usp=sharing"},
   {"id":"HMT-002","name":"Y HASIR","paid":200,"due":500,"email":"member@example.com","phone":"+91 90000 00000","photo":"assets/member-placeholder.svg"},
   {"id":"HMT-003","name":"QUMAR ASHRAFI","paid":100,"due":600,"email":"member@example.com","phone":"+91 90000 00000","photo":"assets/member-placeholder.svg"},
   {"id":"HMT-004","name":"M TASIR","paid":100,"due":600,"email":"member@example.com","phone":"+91 90000 00000","photo":"assets/member-placeholder.svg"},
