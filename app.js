@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 
 /* =========================================================
-   GOOGLE DRIVE PHOTO HANDLER
+   GOOGLE DRIVE PHOTO / IMAGE HANDLER
 ========================================================= */
 
 function getPhotoUrl(url){
@@ -157,11 +157,6 @@ function getPhotoUrl(url){
     return url;
   }
 
-  /*
-   Google Drive:
-   https://drive.google.com/file/d/FILE_ID/view
-  */
-
   let match=url.match(/\/file\/d\/([^/?]+)/);
 
   if(match && match[1]){
@@ -170,11 +165,6 @@ function getPhotoUrl(url){
       encodeURIComponent(match[1])+
       "&sz=w1000";
   }
-
-  /*
-   Google Drive:
-   https://drive.google.com/open?id=FILE_ID
-  */
 
   match=url.match(/[?&]id=([^&]+)/);
 
@@ -186,6 +176,60 @@ function getPhotoUrl(url){
 
     return "https://drive.google.com/thumbnail?id="+
       encodeURIComponent(match[1])+
+      "&sz=w1000";
+  }
+
+  return url;
+}
+
+
+/* =========================================================
+   GOOGLE DRIVE BOOK COVER HANDLER
+========================================================= */
+
+function getBookCoverUrl(url){
+
+  if(!url){
+    return "";
+  }
+
+  url=String(url).trim();
+
+  if(
+    url.startsWith("assets/") ||
+    url.startsWith("./assets/")
+  ){
+    return url;
+  }
+
+  let match=url.match(/\/file\/d\/([^/?]+)/);
+
+  if(match && match[1]){
+
+    return "https://drive.google.com/thumbnail?id="+
+      encodeURIComponent(match[1])+
+      "&sz=w1000";
+  }
+
+  match=url.match(/[?&]id=([^&]+)/);
+
+  if(
+    match &&
+    match[1] &&
+    url.includes("drive.google.com")
+  ){
+
+    return "https://drive.google.com/thumbnail?id="+
+      encodeURIComponent(match[1])+
+      "&sz=w1000";
+  }
+
+  if(
+    /^[a-zA-Z0-9_-]{20,}$/.test(url)
+  ){
+
+    return "https://drive.google.com/thumbnail?id="+
+      encodeURIComponent(url)+
       "&sz=w1000";
   }
 
@@ -1261,9 +1305,10 @@ async function loadRemoteData(){
       return;
     }
 
-    /*
-      GENERAL MEMBERS
-    */
+
+    /* =====================================================
+       GENERAL MEMBERS
+    ===================================================== */
 
     if(
       Array.isArray(j.members) &&
@@ -1295,11 +1340,9 @@ async function loadRemoteData(){
     }
 
 
-    /*
-      TRUST MEMBERS
-
-      Code.gs must return j.trust.
-    */
+    /* =====================================================
+       TRUST MEMBERS
+    ===================================================== */
 
     if(
       Array.isArray(j.trust) &&
@@ -1329,13 +1372,31 @@ async function loadRemoteData(){
     }
 
 
-    /*
-      BOOKS
-    */
+    /* =====================================================
+       BOOKS
+    ===================================================== */
 
     if(Array.isArray(j.books)){
 
-      books=j.books;
+      books=j.books.map(function(b){
+
+        return {
+
+          id:String(b.id || ""),
+
+          title:String(b.title || ""),
+
+          category:String(b.category || ""),
+
+          description:String(b.description || ""),
+
+          url:String(b.url || ""),
+
+          coverUrl:getBookCoverUrl(b.coverUrl || "")
+
+        };
+
+      });
 
     }
 
@@ -1376,12 +1437,32 @@ function renderBooks(){
 
   grid.innerHTML=books.map(function(b){
 
+    const cover=getBookCoverUrl(b.coverUrl);
+
+    const coverHtml=cover
+      ? `
+        <img
+          class="book-cover-image"
+          src="${escapeAttr(cover)}"
+          alt="${escapeHtml(b.title || "Book cover")}"
+          loading="lazy"
+          onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('book-cover-fallback');"
+        >
+      `
+      : `
+        <div class="book-cover-fallback">
+          <span>PDF</span>
+        </div>
+      `;
+
     return `
 
       <article class="book-card">
 
         <div class="book-cover">
-          PDF
+
+          ${coverHtml}
+
         </div>
 
         <div>
