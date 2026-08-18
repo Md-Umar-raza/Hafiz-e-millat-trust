@@ -1423,12 +1423,12 @@ async function loadRemoteData(){
 
 function renderBooks(){
 
-  const grid=
+  const grid =
     document.getElementById("booksGrid");
 
   if(!grid)return;
 
-  if(!books.length){
+  if(!Array.isArray(books) || !books.length){
 
     grid.innerHTML="";
 
@@ -1437,23 +1437,14 @@ function renderBooks(){
 
   grid.innerHTML=books.map(function(b){
 
-    const cover=getBookCoverUrl(b.coverUrl);
-
-    const coverHtml=cover
-      ? `
-        <img
-          class="book-cover-image"
-          src="${escapeAttr(cover)}"
-          alt="${escapeHtml(b.title || "Book cover")}"
-          loading="lazy"
-          onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('book-cover-fallback');"
-        >
-      `
-      : `
-        <div class="book-cover-fallback">
-          <span>PDF</span>
-        </div>
-      `;
+    const cover =
+      getPhotoUrl(
+        b.cover ||
+        b.coverPhoto ||
+        b.cover_url ||
+        b.photo ||
+        ""
+      );
 
     return `
 
@@ -1461,13 +1452,30 @@ function renderBooks(){
 
         <div class="book-cover">
 
-          ${coverHtml}
+          ${
+            cover &&
+            !cover.includes("member-placeholder.svg")
+            ?
+
+            `
+            <img
+              src="${escapeAttr(cover)}"
+              alt="${escapeHtml(b.title || "Book cover")}"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='assets/book-placeholder.svg';"
+            >
+            `
+
+            :
+
+            `<span class="book-cover-fallback">PDF</span>`
+          }
 
         </div>
 
-        <div>
+        <div class="book-info">
 
-          <span>
+          <span class="book-category">
             ${escapeHtml(b.category || "BOOK")}
           </span>
 
@@ -1499,28 +1507,5 @@ function renderBooks(){
     `;
 
   }).join("");
-
-}
-
-
-/* =========================================================
-   SAFE HTML HELPERS
-========================================================= */
-
-function escapeHtml(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function escapeAttr(value){
-
-  return escapeHtml(value);
 
 }
