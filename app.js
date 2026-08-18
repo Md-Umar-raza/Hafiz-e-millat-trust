@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 
 /* =========================================================
-   GOOGLE DRIVE PHOTO / IMAGE HANDLER
+   GOOGLE DRIVE PHOTO HANDLER
 ========================================================= */
 
 function getPhotoUrl(url){
@@ -157,6 +157,11 @@ function getPhotoUrl(url){
     return url;
   }
 
+  /*
+   Google Drive:
+   https://drive.google.com/file/d/FILE_ID/view
+  */
+
   let match=url.match(/\/file\/d\/([^/?]+)/);
 
   if(match && match[1]){
@@ -165,6 +170,11 @@ function getPhotoUrl(url){
       encodeURIComponent(match[1])+
       "&sz=w1000";
   }
+
+  /*
+   Google Drive:
+   https://drive.google.com/open?id=FILE_ID
+  */
 
   match=url.match(/[?&]id=([^&]+)/);
 
@@ -176,60 +186,6 @@ function getPhotoUrl(url){
 
     return "https://drive.google.com/thumbnail?id="+
       encodeURIComponent(match[1])+
-      "&sz=w1000";
-  }
-
-  return url;
-}
-
-
-/* =========================================================
-   GOOGLE DRIVE BOOK COVER HANDLER
-========================================================= */
-
-function getBookCoverUrl(url){
-
-  if(!url){
-    return "";
-  }
-
-  url=String(url).trim();
-
-  if(
-    url.startsWith("assets/") ||
-    url.startsWith("./assets/")
-  ){
-    return url;
-  }
-
-  let match=url.match(/\/file\/d\/([^/?]+)/);
-
-  if(match && match[1]){
-
-    return "https://drive.google.com/thumbnail?id="+
-      encodeURIComponent(match[1])+
-      "&sz=w1000";
-  }
-
-  match=url.match(/[?&]id=([^&]+)/);
-
-  if(
-    match &&
-    match[1] &&
-    url.includes("drive.google.com")
-  ){
-
-    return "https://drive.google.com/thumbnail?id="+
-      encodeURIComponent(match[1])+
-      "&sz=w1000";
-  }
-
-  if(
-    /^[a-zA-Z0-9_-]{20,}$/.test(url)
-  ){
-
-    return "https://drive.google.com/thumbnail?id="+
-      encodeURIComponent(url)+
       "&sz=w1000";
   }
 
@@ -1305,10 +1261,9 @@ async function loadRemoteData(){
       return;
     }
 
-
-    /* =====================================================
-       GENERAL MEMBERS
-    ===================================================== */
+    /*
+      GENERAL MEMBERS
+    */
 
     if(
       Array.isArray(j.members) &&
@@ -1340,9 +1295,11 @@ async function loadRemoteData(){
     }
 
 
-    /* =====================================================
-       TRUST MEMBERS
-    ===================================================== */
+    /*
+      TRUST MEMBERS
+
+      Code.gs must return j.trust.
+    */
 
     if(
       Array.isArray(j.trust) &&
@@ -1372,31 +1329,13 @@ async function loadRemoteData(){
     }
 
 
-    /* =====================================================
-       BOOKS
-    ===================================================== */
+    /*
+      BOOKS
+    */
 
     if(Array.isArray(j.books)){
 
-      books=j.books.map(function(b){
-
-        return {
-
-          id:String(b.id || ""),
-
-          title:String(b.title || ""),
-
-          category:String(b.category || ""),
-
-          description:String(b.description || ""),
-
-          url:String(b.url || ""),
-
-          coverUrl:getBookCoverUrl(b.coverUrl || "")
-
-        };
-
-      });
+      books=j.books;
 
     }
 
@@ -1423,12 +1362,12 @@ async function loadRemoteData(){
 
 function renderBooks(){
 
-  const grid =
+  const grid=
     document.getElementById("booksGrid");
 
   if(!grid)return;
 
-  if(!Array.isArray(books) || !books.length){
+  if(!books.length){
 
     grid.innerHTML="";
 
@@ -1437,45 +1376,17 @@ function renderBooks(){
 
   grid.innerHTML=books.map(function(b){
 
-    const cover =
-      getPhotoUrl(
-        b.cover ||
-        b.coverPhoto ||
-        b.cover_url ||
-        b.photo ||
-        ""
-      );
-
     return `
 
       <article class="book-card">
 
         <div class="book-cover">
-
-          ${
-            cover &&
-            !cover.includes("member-placeholder.svg")
-            ?
-
-            `
-            <img
-              src="${escapeAttr(cover)}"
-              alt="${escapeHtml(b.title || "Book cover")}"
-              loading="lazy"
-              onerror="this.onerror=null;this.src='assets/book-placeholder.svg';"
-            >
-            `
-
-            :
-
-            `<span class="book-cover-fallback">PDF</span>`
-          }
-
+          PDF
         </div>
 
-        <div class="book-info">
+        <div>
 
-          <span class="book-category">
+          <span>
             ${escapeHtml(b.category || "BOOK")}
           </span>
 
@@ -1507,5 +1418,28 @@ function renderBooks(){
     `;
 
   }).join("");
+
+}
+
+
+/* =========================================================
+   SAFE HTML HELPERS
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+  return escapeHtml(value);
 
 }
