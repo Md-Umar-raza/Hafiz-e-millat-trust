@@ -1,1579 +1,1445 @@
-const CONFIG={membershipAmount:100,paymentNumber:"9955780805",adminEmail:"trusthafuzemillat@gmail.com",appsScriptUrl:"https://script.google.com/macros/s/AKfycbw6lmMA-LOizAAuyhIO4-zgYKp7zJQV0QO_b4lgFoeUPmpxdS-o5bU6t5Kv-Im9CW4A9g/exec",monthsStart:"2026-01",monthsEnd:"2027-12"};
+const CONFIG = {
+  membershipAmount: 100,
+  paymentNumber: "9955780805",
+  adminEmail: "trusthafuzemillat@gmail.com",
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbw6lmMA-LOizAAuyhIO4-zgYKp7zJQV0QO_b4lgFoeUPmpxdS-o5bU6t5Kv-Im9CW4A9g/exec",
+  monthsStart: "2026-01",
+  monthsEnd: "2027-12"
+};
 
-const localMembers=[
-{id:"HMT-001",name:"TOFIK ZIYA",paid:200,due:500,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-002",name:"Y HASIR",paid:200,due:500,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-003",name:"QUMAR ASHRAFI",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-004",name:"M TASIR",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-005",name:"AAZAD ALAM",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-006",name:"NOSHAD M",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-007",name:"SHAHNAWAZ",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-008",name:"BABLU",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-009",name:"REZAUL HAQ",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-010",name:"ATHAR",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-011",name:"SHAHBAZ",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-012",name:"JILANI",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-013",name:"TOFIK RAZA",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-014",name:"SARFUDDIN",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-015",name:"JAAN HABIBI",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-016",name:"ALAMGEER",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-017",name:"MUZAMMIL",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-018",name:"UMAR RAZA",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-019",name:"A KUDDUS",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-020",name:"AHMAD RAZA",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-021",name:"ANIS SABRI",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-022",name:"REYASAT",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-023",name:"ZISHAN",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-024",name:"AASIF",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-025",name:"MINTU",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-026",name:"M DILKASH",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-027",name:"RAZA BABU",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-028",name:"DANISH",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-029",name:"JAFAR AKIL",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
-{id:"HMT-030",name:"ASRAR",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"}
+
+/* =========================================================
+   LOCAL FALLBACK MEMBERS
+========================================================= */
+
+const localMembers = [
+  {id:"HMT-001",name:"TOFIK ZIYA",paid:200,due:500,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-002",name:"Y HASIR",paid:200,due:500,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-003",name:"QUMAR ASHRAFI",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-004",name:"M TASIR",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-005",name:"AAZAD ALAM",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-006",name:"NOSHAD M",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-007",name:"SHAHNAWAZ",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-008",name:"BABLU",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-009",name:"REZAUL HAQ",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-010",name:"ATHAR",paid:100,due:600,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-011",name:"SHAHBAZ",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-012",name:"JILANI",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-013",name:"TOFIK RAZA",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-014",name:"SARFUDDIN",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-015",name:"JAAN HABIBI",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-016",name:"ALAMGEER",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-017",name:"MUZAMMIL",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-018",name:"UMAR RAZA",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-019",name:"A KUDDUS",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-020",name:"AHMAD RAZA",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-021",name:"ANIS SABRI",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-022",name:"REYASAT",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-023",name:"ZISHAN",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-024",name:"AASIF",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-025",name:"MINTU",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-026",name:"M DILKASH",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-027",name:"RAZA BABU",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-028",name:"DANISH",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-029",name:"JAFAR AKIL",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"},
+  {id:"HMT-030",name:"ASRAR",paid:0,due:700,email:"member@example.com",phone:"+91 90000 00000",photo:"assets/member-placeholder.svg"}
 ];
 
-let trustMembers=[
-{role:"Director",name:"Molana Tofique",id:"TRUST-001",photo:"assets/member-placeholder.svg",email:"director@example.com",phone:"+91 90000 00001"},
-{role:"Sadar",name:"Aazad",id:"TRUST-002",photo:"assets/member-placeholder.svg",email:"sadar@example.com",phone:"+91 90000 00002"},
-{role:"Secretary",name:"Hafiz Naushaad",id:"TRUST-003",photo:"assets/member-placeholder.svg",email:"secretary@example.com",phone:"+91 90000 00003"},
-{role:"Treasurer (Khajanchi)",name:"Rezaul Huq",id:"TRUST-004",photo:"assets/member-placeholder.svg",email:"treasurer@example.com",phone:"+91 90000 00004"},
-{role:"Social Media Handle",name:"Umar Raza",id:"TRUST-005",photo:"assets/member-placeholder.svg",email:"social@example.com",phone:"+91 90000 00005"}
+
+/* =========================================================
+   FALLBACK TRUST MEMBERS
+========================================================= */
+
+let trustMembers = [
+  {
+    role:"Director",
+    name:"Molana Tofique",
+    id:"TRUST-001",
+    email:"director@example.com",
+    phone:"+91 90000 00001",
+    photo:"assets/member-placeholder.svg"
+  },
+  {
+    role:"Sadar",
+    name:"Aazad",
+    id:"TRUST-002",
+    email:"sadar@example.com",
+    phone:"+91 90000 00002",
+    photo:"assets/member-placeholder.svg"
+  },
+  {
+    role:"Secretary",
+    name:"Hafiz Naushaad",
+    id:"TRUST-003",
+    email:"secretary@example.com",
+    phone:"+91 90000 00003",
+    photo:"assets/member-placeholder.svg"
+  },
+  {
+    role:"Treasurer (Khajanchi)",
+    name:"Rezaul Huq",
+    id:"TRUST-004",
+    email:"treasurer@example.com",
+    phone:"+91 90000 00004",
+    photo:"assets/member-placeholder.svg"
+  },
+  {
+    role:"Social Media Handle",
+    name:"Umar Raza",
+    id:"TRUST-005",
+    email:"social@example.com",
+    phone:"+91 90000 00005",
+    photo:"assets/member-placeholder.svg"
+  }
 ];
 
-let members=[...localMembers],books=[],pendingPayments=[];
+let members = [...localMembers];
+let books = [];
+let pendingPayments = [];
 
-const heroSlides=[
-{img:"assets/help-family-blurred.png",title:"Food support for a needy family"},
-{img:"assets/help-supplies.png",title:"Essential ration supplies"},
-{img:"assets/food-package.png",title:"₹1,300 monthly food package"}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+const heroSlides = [
+  {
+    img:"assets/help-family-blurred.png",
+    title:"Food support for a needy family"
+  },
+  {
+    img:"assets/help-supplies.png",
+    title:"Essential ration supplies"
+  },
+  {
+    img:"assets/food-package.png",
+    title:"₹1,300 monthly food package"
+  }
 ];
 
-function escapeHTML(value){
-return String(value??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-}
 
-function injectDynamicStyles(){
+/* =========================================================
+   PAGE LOAD
+========================================================= */
 
-if(document.getElementById("hmtDynamicStyles"))return;
+document.addEventListener("DOMContentLoaded",function(){
 
-const s=document.createElement("style");
+  renderHero();
+  renderTrust();
+  renderMembers();
+  populateMonths();
+  renderPaymentPage();
+  updateCurrentMonth();
 
-s.id="hmtDynamicStyles";
-
-s.textContent=`
-.book-cover.book-cover-image{
-overflow:hidden;
-padding:0!important;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#0d4f3d;
-min-height:190px;
-border-radius:14px
-}
-
-.book-cover.book-cover-image img{
-width:100%;
-height:190px;
-display:block;
-object-fit:cover;
-object-position:center
-}
-
-.book-cover.book-cover-fallback{
-display:flex;
-align-items:center;
-justify-content:center;
-min-height:190px;
-background:#0d4f3d;
-color:#f2c15b;
-font-size:25px;
-font-weight:800;
-border-radius:14px
-}
-
-.book-card{
-overflow:hidden
-}
-
-.trust-card .trust-photo{
-display:block;
-object-fit:cover;
-object-position:center;
-background:#edf4ef
-}
-
-.trust-card{
-overflow:hidden
-}
-`;
-
-document.head.appendChild(s);
-}
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-injectDynamicStyles();
-
-renderHero();
-
-renderTrust();
-
-renderMembers();
-
-populateMonths();
-
-renderPaymentPage();
-
-updateCurrentMonth();
-
-if(CONFIG.appsScriptUrl){
-loadRemoteData();
-}
+  if(CONFIG.appsScriptUrl){
+    loadRemoteData();
+  }
 
 });
+
+
+/* =========================================================
+   GOOGLE DRIVE PHOTO HANDLER
+========================================================= */
 
 function getPhotoUrl(url){
 
-if(!url)
-return"assets/member-placeholder.svg";
+  if(!url){
+    return "assets/member-placeholder.svg";
+  }
 
-url=String(url).trim();
+  url=String(url).trim();
 
-if(
-url.startsWith("assets/")||
-url.startsWith("./assets/")
-)
-return url;
+  if(
+    url.startsWith("assets/") ||
+    url.startsWith("./assets/")
+  ){
+    return url;
+  }
 
-let m=
-url.match(
-/\/file\/d\/([^/?#]+)/
-);
+  /*
+   Google Drive:
+   https://drive.google.com/file/d/FILE_ID/view
+  */
 
-if(m&&m[1])
-return"https://drive.google.com/thumbnail?id="+
-encodeURIComponent(m[1])+
-"&sz=w1000";
+  let match=url.match(/\/file\/d\/([^/?]+)/);
 
-m=
-url.match(
-/[?&]id=([^&#]+)/
-);
+  if(match && match[1]){
 
-if(
-m&&
-m[1]&&
-url.includes("drive.google.com")
-)
-return"https://drive.google.com/thumbnail?id="+
-encodeURIComponent(m[1])+
-"&sz=w1000";
+    return "https://drive.google.com/thumbnail?id="+
+      encodeURIComponent(match[1])+
+      "&sz=w1000";
+  }
 
-if(
-url.includes("drive.google.com/uc")
-)
-return url;
+  /*
+   Google Drive:
+   https://drive.google.com/open?id=FILE_ID
+  */
 
-return url;
+  match=url.match(/[?&]id=([^&]+)/);
+
+  if(
+    match &&
+    match[1] &&
+    url.includes("drive.google.com")
+  ){
+
+    return "https://drive.google.com/thumbnail?id="+
+      encodeURIComponent(match[1])+
+      "&sz=w1000";
+  }
+
+  return url;
 }
+
+
+/* =========================================================
+   HERO
+========================================================= */
 
 function renderHero(){
 
-const s=
-document.getElementById("heroSlides");
+  const s=document.getElementById("heroSlides");
+  const d=document.getElementById("heroDots");
 
-const d=
-document.getElementById("heroDots");
+  if(!s || !d)return;
 
-if(!s||!d)return;
+  s.innerHTML=heroSlides.map(function(x,i){
 
-s.innerHTML=
-heroSlides
-.map(
-(x,i)=>`
-<div
-class="hero-slide ${i===0?"active":""}"
-style="background-image:url('${x.img}')"
-aria-label="${escapeHTML(x.title)}">
-</div>
-`
-)
-.join("");
+    return `
+      <div
+        class="hero-slide ${i===0?"active":""}"
+        style="background-image:url('${x.img}')"
+        aria-label="${x.title}">
+      </div>
+    `;
 
-d.innerHTML=
-heroSlides
-.map(
-(_,i)=>`
-<button
-class="${i===0?"active":""}"
-onclick="goSlide(${i})">
-</button>
-`
-)
-.join("");
+  }).join("");
 
-let n=0;
+  d.innerHTML=heroSlides.map(function(_,i){
 
-window.heroTimer=
-setInterval(
-()=>{
-n=(n+1)%heroSlides.length;
-goSlide(n);
-},
-1600
-);
+    return `
+      <button
+        class="${i===0?"active":""}"
+        onclick="goSlide(${i})">
+      </button>
+    `;
+
+  }).join("");
+
+  let n=0;
+
+  clearInterval(window.heroTimer);
+
+  window.heroTimer=setInterval(function(){
+
+    n=(n+1)%heroSlides.length;
+    goSlide(n);
+
+  },1600);
+
 }
+
 
 function goSlide(i){
 
-document
-.querySelectorAll(".hero-slide")
-.forEach(
-(x,n)=>
-x.classList.toggle(
-"active",
-n===i
-)
-);
+  document
+    .querySelectorAll(".hero-slide")
+    .forEach(function(x,n){
+      x.classList.toggle("active",n===i);
+    });
 
-document
-.querySelectorAll(".hero-dots button")
-.forEach(
-(x,n)=>
-x.classList.toggle(
-"active",
-n===i
-)
-);
+  document
+    .querySelectorAll(".hero-dots button")
+    .forEach(function(x,n){
+      x.classList.toggle("active",n===i);
+    });
 }
+
+
+/* =========================================================
+   TRUST MEMBERS
+========================================================= */
 
 function renderTrust(){
 
-const grid=
-document.getElementById(
-"trustGrid"
-);
+  const grid=document.getElementById("trustGrid");
 
-if(!grid)return;
+  if(!grid)return;
 
-grid.innerHTML=
-trustMembers
-.map(m=>{
+  if(!Array.isArray(trustMembers) || !trustMembers.length){
 
-const photo=
-getPhotoUrl(
-m.photo
-);
+    grid.innerHTML=`
+      <div class="quote-card">
+        <p>No trust members found.</p>
+      </div>
+    `;
 
-return `
-<article class="trust-card">
+    return;
+  }
 
-<img
-class="trust-photo"
-src="${escapeHTML(photo)}"
-alt="${escapeHTML(
-m.name||
-m.role||
-"Trust Member"
-)}"
-onerror="this.onerror=null;this.src='assets/member-placeholder.svg';">
+  grid.innerHTML=trustMembers.map(function(m){
 
-<div>
+    const photo=getPhotoUrl(m.photo);
 
-<span class="role">
-${escapeHTML(m.role||"")}
-</span>
+    return `
+      <article class="trust-card">
 
-<h3>
-${escapeHTML(m.name||"")}
-</h3>
+        <img
+          class="trust-photo"
+          src="${photo}"
+          alt="${escapeHtml(m.name || m.role || "Trust Member")}"
+          loading="lazy"
+          onerror="this.onerror=null;this.src='assets/member-placeholder.svg';"
+        >
 
-<p>
-${escapeHTML(m.id||"")}
-${m.email
-?" • "+escapeHTML(m.email)
-:""}
-</p>
+        <div>
 
-<p>
-${escapeHTML(m.phone||"")}
-</p>
+          <span class="role">
+            ${escapeHtml(m.role || "")}
+          </span>
 
-</div>
+          <h3>
+            ${escapeHtml(m.name || "")}
+          </h3>
 
-</article>
-`;
+          <p>
+            ${escapeHtml(m.id || "")}
+            ${m.email ? " • "+escapeHtml(m.email) : ""}
+          </p>
 
-})
-.join("");
+          <p>
+            ${escapeHtml(m.phone || "")}
+          </p>
+
+        </div>
+
+      </article>
+    `;
+
+  }).join("");
+
 }
+
+
+/* =========================================================
+   GENERAL MEMBERS
+========================================================= */
 
 function renderMembers(){
 
-const q=
-(
-document
-.getElementById("memberSearch")
-?.value||""
-).toLowerCase();
+  const q=(
+    document.getElementById("memberSearch")?.value || ""
+  ).toLowerCase();
 
-const f=
-document
-.getElementById("memberFilter")
-?.value||
-"all";
+  const f=
+    document.getElementById("memberFilter")?.value || "all";
 
-const list=
-members.filter(
-m=>{
+  const list=members.filter(function(m){
 
-const name=
-String(m.name||"")
-.toLowerCase();
+    const name=String(m.name || "").toLowerCase();
+    const id=String(m.id || "").toLowerCase();
 
-const id=
-String(m.id||"")
-.toLowerCase();
+    const okq=
+      !q ||
+      name.includes(q) ||
+      id.includes(q);
 
-const okq=
-!q||
-name.includes(q)||
-id.includes(q);
+    const okf=
+      f==="all" ||
+      (f==="paid" && Number(m.paid)>0) ||
+      (f==="due" && Number(m.due)>0);
 
-const okf=
-f==="all"||
-(f==="paid"&&Number(m.paid)>0)||
-(f==="due"&&Number(m.due)>0);
+    return okq && okf;
 
-return okq&&okf;
-}
-);
+  });
 
-const grid=
-document.getElementById(
-"memberGrid"
-);
+  const grid=document.getElementById("memberGrid");
 
-if(!grid)return;
+  if(!grid)return;
 
-grid.innerHTML=
-list
-.map(
-m=>{
+  grid.innerHTML=list.map(function(m){
 
-const photo=
-getPhotoUrl(
-m.photo
-);
+    const photo=getPhotoUrl(m.photo);
 
-return `
-<article
-class="member-card"
-onclick="openMember('${escapeHTML(m.id)}')">
+    return `
+      <article
+        class="member-card"
+        onclick="openMember('${escapeAttr(m.id)}')">
 
-<div class="member-top">
+        <div class="member-top">
 
-<img
-class="avatar"
-src="${escapeHTML(photo)}"
-alt="${escapeHTML(m.name||"Member")}"
-onerror="this.onerror=null;this.src='assets/member-placeholder.svg';">
+          <img
+            class="avatar"
+            src="${photo}"
+            alt="${escapeHtml(m.name || "Member")}"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='assets/member-placeholder.svg';"
+          >
 
-<div>
+          <div>
 
-<h3>
-${escapeHTML(m.name||"")}
-</h3>
+            <h3>
+              ${escapeHtml(m.name || "")}
+            </h3>
 
-<div class="member-id">
-${escapeHTML(m.id||"")}
-</div>
+            <div class="member-id">
+              ${escapeHtml(m.id || "")}
+            </div>
 
-</div>
+          </div>
 
-</div>
+        </div>
 
-<div class="member-meta">
+        <div class="member-meta">
 
-<span>
-Public profile
-</span>
+          <span>Public profile</span>
 
-<span
-class="status ${
-Number(m.due)>0
-?"due"
-:"paid"
-}">
+          <span class="status ${Number(m.due)>0?"due":"paid"}">
 
-${
-Number(m.due)>0
-?"Dues ₹"+Number(m.due)
-:"Up to date"
+            ${
+              Number(m.due)>0
+                ? "Dues ₹"+Number(m.due)
+                : "Up to date"
+            }
+
+          </span>
+
+        </div>
+
+      </article>
+    `;
+
+  }).join("") || `
+    <div class="quote-card">
+      <p>No members found.</p>
+    </div>
+  `;
+
 }
 
-</span>
 
-</div>
-
-</article>
-`;
-}
-)
-.join("")||
-`
-<div class="quote-card">
-<p>No members found.</p>
-</div>
-`;
-}
+/* =========================================================
+   MEMBER DETAILS
+========================================================= */
 
 function openMember(id){
 
-const m=
-members.find(
-x=>String(x.id)===String(id)
-);
+  const m=members.find(function(x){
+    return String(x.id)===String(id);
+  });
 
-if(!m)return;
+  if(!m)return;
 
-const photo=
-getPhotoUrl(m.photo);
+  const photo=getPhotoUrl(m.photo);
 
-document.getElementById(
-"memberDetail"
-).innerHTML=`
+  const box=document.getElementById("memberDetail");
 
-<div class="member-detail-head">
+  if(!box)return;
 
-<img
-class="detail-avatar"
-src="${escapeHTML(photo)}"
-alt="${escapeHTML(m.name||"Member")}"
-onerror="this.onerror=null;this.src='assets/member-placeholder.svg';">
+  box.innerHTML=`
 
-<div>
+    <div class="member-detail-head">
 
-<span class="kicker">
-GENERAL MEMBER
-</span>
+      <img
+        class="detail-avatar"
+        src="${photo}"
+        alt="${escapeHtml(m.name || "Member")}"
+        onerror="this.onerror=null;this.src='assets/member-placeholder.svg';"
+      >
 
-<h2>
-${escapeHTML(m.name||"")}
-</h2>
+      <div>
 
-<small>
-${escapeHTML(m.id||"")}
-</small>
+        <span class="kicker">
+          GENERAL MEMBER
+        </span>
 
-</div>
+        <h2>
+          ${escapeHtml(m.name || "")}
+        </h2>
 
-</div>
+        <small>
+          ${escapeHtml(m.id || "")}
+        </small>
 
-<table class="detail-table">
+      </div>
 
-<tr>
-<td>Member ID</td>
-<td>${escapeHTML(m.id||"")}</td>
-</tr>
+    </div>
 
-<tr>
-<td>Name</td>
-<td>${escapeHTML(m.name||"")}</td>
-</tr>
+    <table class="detail-table">
 
-<tr>
-<td>Phone</td>
-<td>${escapeHTML(m.phone||"")}</td>
-</tr>
+      <tr>
+        <td>Member ID</td>
+        <td>${escapeHtml(m.id || "")}</td>
+      </tr>
 
-<tr>
-<td>Email</td>
-<td>${escapeHTML(m.email||"")}</td>
-</tr>
+      <tr>
+        <td>Name</td>
+        <td>${escapeHtml(m.name || "")}</td>
+      </tr>
 
-<tr>
-<td>Payment status</td>
-<td>
-${
-Number(m.due)>0
-?"Dues pending"
-:"No dues in current record"
+      <tr>
+        <td>Phone</td>
+        <td>${escapeHtml(m.phone || "")}</td>
+      </tr>
+
+      <tr>
+        <td>Email</td>
+        <td>${escapeHtml(m.email || "")}</td>
+      </tr>
+
+      <tr>
+        <td>Payment status</td>
+        <td>
+          ${
+            Number(m.due)>0
+              ? "Dues pending"
+              : "No dues in current record"
+          }
+        </td>
+      </tr>
+
+    </table>
+  `;
+
+  openModal("memberModal");
+
 }
-</td>
-</tr>
 
-</table>
-`;
-
-openModal(
-"memberModal"
-);
-}
 
 function openAllMembers(){
 
-document
-.getElementById("members")
-?.scrollIntoView({
-behavior:"smooth"
-});
+  document
+    .getElementById("members")
+    ?.scrollIntoView({
+      behavior:"smooth"
+    });
 
 }
+
+
+/* =========================================================
+   MONTHS
+========================================================= */
 
 function monthList(){
 
-const out=[];
+  const out=[];
 
-let[y,m]=
-CONFIG
-.monthsStart
-.split("-")
-.map(Number);
+  let [y,m]=CONFIG.monthsStart
+    .split("-")
+    .map(Number);
 
-const[ey,em]=
-CONFIG
-.monthsEnd
-.split("-")
-.map(Number);
+  const [ey,em]=CONFIG.monthsEnd
+    .split("-")
+    .map(Number);
 
-while(
-y<ey||
-(y===ey&&m<=em)
-){
+  while(
+    y<ey ||
+    (y===ey && m<=em)
+  ){
 
-const v=
-`${y}-${String(m).padStart(2,"0")}`;
+    const value=
+      `${y}-${String(m).padStart(2,"0")}`;
 
-out.push({
-value:v,
-label:
-new Date(
-y,
-m-1,
-1
-).toLocaleString(
-"en-IN",
-{
-month:"long",
-year:"numeric"
-}
-)
-});
+    out.push({
 
-m++;
+      value:value,
 
-if(m>12){
-m=1;
-y++;
+      label:new Date(y,m-1,1)
+        .toLocaleString("en-IN",{
+          month:"long",
+          year:"numeric"
+        })
+
+    });
+
+    m++;
+
+    if(m>12){
+      m=1;
+      y++;
+    }
+
+  }
+
+  return out;
 }
 
-}
-
-return out;
-}
 
 function populateMonths(){
-renderPaymentPage();
+
+  renderPaymentPage();
+
 }
+
 
 function renderPaymentPage(){
 
-const months=
-monthList();
+  const months=monthList();
 
-const sel=
-document.getElementById(
-"paymentMonth"
-);
+  const sel=
+    document.getElementById("paymentMonth");
 
-if(sel){
+  if(sel){
 
-sel.innerHTML=
-months
-.map(
-x=>`
-<option value="${x.value}">
-${x.label}
-</option>
-`
-)
-.join("");
+    sel.innerHTML=months.map(function(x){
 
-}
+      return `
+        <option value="${x.value}">
+          ${x.label}
+        </option>
+      `;
 
-const list=
-document.getElementById(
-"duesList"
-);
+    }).join("");
 
-if(list){
+  }
 
-list.innerHTML=
-months
-.map(
-x=>`
-<label class="due-row">
+  const list=
+    document.getElementById("duesList");
 
-<input
-type="checkbox"
-value="${x.value}"
-onchange="updateDuesTotal()">
+  if(list){
 
-<span>
-${x.label}
-</span>
+    list.innerHTML=months.map(function(x){
 
-<b>
-₹100
-</b>
+      return `
+        <label class="due-row">
 
-</label>
-`
-)
-.join("");
+          <input
+            type="checkbox"
+            value="${x.value}"
+            onchange="updateDuesTotal()"
+          >
+
+          <span>
+            ${x.label}
+          </span>
+
+          <b>
+            ₹${CONFIG.membershipAmount}
+          </b>
+
+        </label>
+      `;
+
+    }).join("");
+
+  }
+
+  updateDuesTotal();
 
 }
 
-updateDuesTotal();
-}
 
 function updateDuesTotal(){
 
-const n=
-document.querySelectorAll(
-'#duesList input[type="checkbox"]:checked'
-).length;
+  const n=document.querySelectorAll(
+    '#duesList input[type="checkbox"]:checked'
+  ).length;
 
-const e=
-document.getElementById(
-"duesTotal"
-);
+  const e=document.getElementById("duesTotal");
 
-if(e)
-e.textContent=
-"₹"+
-(n*CONFIG.membershipAmount);
+  if(e){
+    e.textContent=
+      "₹"+(n*CONFIG.membershipAmount);
+  }
+
 }
+
 
 function useSelectedDuesForPayment(){
 
-const selected=
-[
-...document.querySelectorAll(
-'#duesList input[type="checkbox"]:checked'
-)
-]
-.map(x=>x.value);
+  const selected=[
+    ...document.querySelectorAll(
+      '#duesList input[type="checkbox"]:checked'
+    )
+  ].map(function(x){
+    return x.value;
+  });
 
-if(!selected.length){
+  if(!selected.length){
 
-showToast(
-"Please select at least one pending month."
-);
+    showToast(
+      "Please select at least one pending month."
+    );
 
-return;
+    return;
+  }
+
+  const sel=document.getElementById("paymentMonth");
+
+  if(sel){
+    sel.value=selected[0];
+  }
+
+  openPayment();
+
+  showToast(
+    selected.length===1
+      ? "Selected month is ready for payment."
+      : "First selected month is ready. Submit each month separately."
+  );
+
 }
 
-const sel=
-document.getElementById(
-"paymentMonth"
-);
-
-if(sel)
-sel.value=
-selected[0];
-
-openPayment();
-
-showToast(
-selected.length===1
-?"Selected month is ready for payment."
-:"First selected month is ready. Submit each month separately."
-);
-}
 
 function updateCurrentMonth(){
 
-const el=
-document.getElementById(
-"currentMonthLabel"
-);
+  const el=
+    document.getElementById("currentMonthLabel");
 
-if(el){
+  if(el){
 
-el.textContent=
-new Date()
-.toLocaleString(
-"en-IN",
-{
-month:"long",
-year:"numeric"
-}
-)
-.toUpperCase();
+    el.textContent=
+      new Date()
+        .toLocaleString("en-IN",{
+          month:"long",
+          year:"numeric"
+        })
+        .toUpperCase();
+
+  }
 
 }
-}
+
+
+/* =========================================================
+   PAYMENT PAGE
+========================================================= */
 
 function openPayment(){
 
-renderPaymentPage();
+  renderPaymentPage();
 
-const p=
-document.getElementById(
-"paymentPage"
-);
+  const p=document.getElementById("paymentPage");
 
-if(!p)return;
+  if(!p)return;
 
-p.classList.add("open");
+  p.classList.add("open");
+  p.setAttribute("aria-hidden","false");
 
-p.setAttribute(
-"aria-hidden",
-"false"
-);
+  document.body.classList.add("payment-open");
 
-document.body.classList.add(
-"payment-open"
-);
 }
+
 
 function closePaymentPage(){
 
-const p=
-document.getElementById(
-"paymentPage"
-);
+  const p=document.getElementById("paymentPage");
 
-if(!p)return;
+  if(!p)return;
 
-p.classList.remove(
-"open"
-);
+  p.classList.remove("open");
+  p.setAttribute("aria-hidden","true");
 
-p.setAttribute(
-"aria-hidden",
-"true"
-);
+  document.body.classList.remove("payment-open");
 
-document.body.classList.remove(
-"payment-open"
-);
 }
+
+
+/* =========================================================
+   MODALS
+========================================================= */
 
 function openModal(id){
 
-const el=
-document.getElementById(id);
+  const el=document.getElementById(id);
 
-if(!el)return;
+  if(!el)return;
 
-el.classList.add("open");
+  el.classList.add("open");
+  el.setAttribute("aria-hidden","false");
 
-el.setAttribute(
-"aria-hidden",
-"false"
-);
 }
+
 
 function closeModal(id){
 
-const el=
-document.getElementById(id);
+  const el=document.getElementById(id);
 
-if(!el)return;
+  if(!el)return;
 
-el.classList.remove(
-"open"
-);
+  el.classList.remove("open");
+  el.setAttribute("aria-hidden","true");
 
-el.setAttribute(
-"aria-hidden",
-"true"
-);
 }
+
 
 function toggleMenu(){
 
-document
-.querySelector(".nav nav")
-?.classList.toggle(
-"mobile-open"
-);
+  document
+    .querySelector(".nav nav")
+    ?.classList.toggle("mobile-open");
+
 }
+
 
 function showToast(t){
 
-const e=
-document.getElementById(
-"toast"
-);
+  const e=document.getElementById("toast");
 
-if(!e)return;
+  if(!e)return;
 
-e.textContent=t;
+  e.textContent=t;
+  e.classList.add("show");
 
-e.classList.add("show");
+  clearTimeout(window.toastT);
 
-clearTimeout(
-window.toastT
-);
+  window.toastT=setTimeout(function(){
 
-window.toastT=
-setTimeout(
-()=>{
-e.classList.remove("show");
-},
-3000
-);
+    e.classList.remove("show");
+
+  },3000);
+
 }
+
+
+/* =========================================================
+   PAYMENT SUBMISSION
+========================================================= */
 
 async function submitPayment(ev){
 
-ev.preventDefault();
+  ev.preventDefault();
 
-const form=
-ev.target;
+  const form=ev.target;
+  const data=new FormData(form);
 
-const data=
-new FormData(form);
+  const monthEl=document.getElementById("paymentMonth");
 
-const months=[
-document.getElementById(
-"paymentMonth"
-).value
-];
+  const months=[
+    monthEl?.value
+  ].filter(Boolean);
 
-if(!months.length){
+  if(!months.length){
 
-showToast(
-"Please select at least one month."
-);
+    showToast(
+      "Please select at least one month."
+    );
 
-return;
+    return;
+  }
+
+  const file=
+    form.screenshot?.files?.[0];
+
+  if(!file){
+
+    showToast(
+      "Please upload payment screenshot."
+    );
+
+    return;
+  }
+
+  const payload={
+
+    action:"submitPayment",
+
+    name:data.get("name"),
+
+    memberId:data.get("memberId"),
+
+    email:data.get("email"),
+
+    phone:data.get("phone"),
+
+    months:months,
+
+    total:
+      months.length*
+      CONFIG.membershipAmount,
+
+    fileName:file.name,
+
+    mimeType:file.type
+
+  };
+
+  if(CONFIG.appsScriptUrl){
+
+    try{
+
+      payload.fileData=
+        await fileToBase64(file);
+
+      const r=await fetch(
+        CONFIG.appsScriptUrl,
+        {
+          method:"POST",
+          body:JSON.stringify(payload)
+        }
+      );
+
+      const j=await r.json();
+
+      if(!j.ok){
+
+        throw new Error(
+          j.message || "Payment submission failed"
+        );
+
+      }
+
+    }catch(e){
+
+      console.error(e);
+
+      showToast(
+        "Submission failed. Check Apps Script setup."
+      );
+
+      return;
+    }
+
+  }
+
+  form.reset();
+
+  closePaymentPage();
+
+  const adminContent=
+    document.getElementById("adminContent");
+
+  if(adminContent){
+
+    adminContent.innerHTML=`
+
+      <div class="modal-head">
+
+        <span class="kicker">
+          SUBMITTED
+        </span>
+
+        <h2>
+          JazakAllah Khair 🤍
+        </h2>
+
+        <p>
+          Your membership payment request has been
+          submitted for admin verification.
+          Status: <b>Pending</b>.
+        </p>
+
+      </div>
+
+      <button
+        class="btn primary"
+        onclick="closeModal('adminModal')">
+        Done
+      </button>
+
+    `;
+
+  }
+
+  openModal("adminModal");
+
 }
 
-const file=
-form.screenshot.files[0];
-
-if(!file){
-
-showToast(
-"Please upload payment screenshot."
-);
-
-return;
-}
-
-const payload={
-action:"submitPayment",
-name:data.get("name"),
-memberId:data.get("memberId"),
-email:data.get("email"),
-phone:data.get("phone"),
-months:months,
-total:
-months.length*
-CONFIG.membershipAmount,
-fileName:file.name,
-mimeType:file.type
-};
-
-if(CONFIG.appsScriptUrl){
-
-payload.fileData=
-await fileToBase64(file);
-
-try{
-
-const r=
-await fetch(
-CONFIG.appsScriptUrl,
-{
-method:"POST",
-body:JSON.stringify(payload)
-}
-);
-
-const j=
-await r.json();
-
-if(!j.ok)
-throw Error(
-j.message||
-"Failed"
-);
-
-}catch(e){
-
-showToast(
-"Submission failed. Check Apps Script URL/setup."
-);
-
-return;
-}
-}
-
-form.reset();
-
-const paymentMonth=
-document.getElementById(
-"paymentMonth"
-);
-
-if(paymentMonth){
-
-paymentMonth.value=
-monthList()[
-Math.min(
-7,
-monthList().length-1
-)
-].value;
-
-}
-
-closePaymentPage();
-
-const adminContent=
-document.getElementById(
-"adminContent"
-);
-
-if(adminContent){
-
-adminContent.innerHTML=`
-
-<div class="modal-head">
-
-<span class="kicker">
-SUBMITTED
-</span>
-
-<h2>
-JazakAllah Khair 🤍
-</h2>
-
-<p>
-Your membership payment request has been
-submitted for admin verification.
-Status: <b>Pending</b>.
-</p>
-
-</div>
-
-<button
-class="btn primary"
-onclick="closeModal('adminModal')">
-Done
-</button>
-
-`;
-}
-
-openModal(
-"adminModal"
-);
-}
 
 function fileToBase64(file){
 
-return new Promise(
-(res,rej)=>{
+  return new Promise(function(resolve,reject){
 
-const r=
-new FileReader();
+    const reader=new FileReader();
 
-r.onload=
-()=>res(
-r.result.split(",")[1]
-);
+    reader.onload=function(){
 
-r.onerror=rej;
+      resolve(
+        reader.result.split(",")[1]
+      );
 
-r.readAsDataURL(file);
+    };
+
+    reader.onerror=reject;
+
+    reader.readAsDataURL(file);
+
+  });
 
 }
-);
-}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
 
 function openAdmin(){
 
-document.getElementById(
-"adminContent"
-).innerHTML=`
+  const box=document.getElementById("adminContent");
 
-<div class="modal-head">
+  if(!box)return;
 
-<span class="kicker">
-PRIVATE ADMIN
-</span>
+  box.innerHTML=`
 
-<h2>
-Admin Login
-</h2>
+    <div class="modal-head">
 
-<p>
-Use the trust email and the admin PIN
-configured in Code.gs.
-</p>
+      <span class="kicker">
+        PRIVATE ADMIN
+      </span>
 
-</div>
+      <h2>
+        Admin Login
+      </h2>
 
-<form
-onsubmit="adminLogin(event)">
+      <p>
+        Use the trust email and the admin PIN
+        configured in Code.gs.
+      </p>
 
-<label>
-Admin email
+    </div>
 
-<input
-type="email"
-id="adminEmail"
-required
-value="${escapeHTML(CONFIG.adminEmail)}">
+    <form onsubmit="adminLogin(event)">
 
-</label>
+      <label>
+        Admin email
 
-<label>
-Admin PIN
+        <input
+          type="email"
+          id="adminEmail"
+          required
+          value="${escapeAttr(CONFIG.adminEmail)}"
+        >
 
-<input
-type="password"
-id="adminPin"
-required
-placeholder="Enter admin PIN">
+      </label>
 
-</label>
+      <label>
+        Admin PIN
 
-<button class="btn primary full">
-Login
-</button>
+        <input
+          type="password"
+          id="adminPin"
+          required
+          placeholder="Enter admin PIN"
+        >
 
-</form>
-`;
+      </label>
 
-openModal(
-"adminModal"
-);
+      <button class="btn primary full">
+        Login
+      </button>
+
+    </form>
+  `;
+
+  openModal("adminModal");
+
 }
+
 
 async function adminLogin(ev){
 
-ev.preventDefault();
+  ev.preventDefault();
 
-const email=
-document
-.getElementById(
-"adminEmail"
-)
-.value
-.trim();
+  const email=
+    document.getElementById("adminEmail")
+      ?.value
+      .trim();
 
-const pin=
-document
-.getElementById(
-"adminPin"
-)
-.value;
+  const pin=
+    document.getElementById("adminPin")
+      ?.value;
 
-if(CONFIG.appsScriptUrl){
+  if(CONFIG.appsScriptUrl){
 
-try{
+    try{
 
-const r=
-await fetch(
-CONFIG.appsScriptUrl,
-{
-method:"POST",
-body:JSON.stringify({
-action:"adminLogin",
-email,
-pin
-})
-}
-);
+      const r=await fetch(
+        CONFIG.appsScriptUrl,
+        {
+          method:"POST",
+          body:JSON.stringify({
+            action:"adminLogin",
+            email:email,
+            pin:pin
+          })
+        }
+      );
 
-const j=
-await r.json();
+      const j=await r.json();
 
-if(!j.ok)
-throw Error("Invalid");
+      if(!j.ok){
+        throw new Error(
+          j.message || "Invalid credentials"
+        );
+      }
 
-pendingPayments=
-j.payments||[];
+      pendingPayments=
+        j.payments || [];
 
-renderAdmin();
+      renderAdmin();
 
-return;
+      return;
 
-}catch(e){
+    }catch(e){
 
-showToast(
-"Admin login failed. Check Code.gs settings."
-);
+      console.error(e);
 
-return;
-}
-}
+      showToast(
+        "Admin login failed."
+      );
 
-if(
-email===CONFIG.adminEmail&&
-pin==="HAFIZ-E-MILLAT"
-){
+      return;
+    }
 
-pendingPayments=[];
+  }
 
-renderAdmin();
-
-}else{
-
-showToast(
-"Demo login failed."
-);
+  showToast(
+    "Apps Script is not connected."
+  );
 
 }
-}
+
 
 function renderAdmin(){
 
-document.getElementById(
-"adminContent"
-).innerHTML=`
+  const box=
+    document.getElementById("adminContent");
 
-<div class="modal-head">
+  if(!box)return;
 
-<span class="kicker">
-ADMIN DASHBOARD
-</span>
+  box.innerHTML=`
 
-<h2>
-Verification Center
-</h2>
+    <div class="modal-head">
 
-<p>
-Payment screenshots are private and should
-only be reviewed here.
-</p>
+      <span class="kicker">
+        ADMIN DASHBOARD
+      </span>
 
-</div>
+      <h2>
+        Verification Center
+      </h2>
 
-<div>
+      <p>
+        Payment screenshots are private and should
+        only be reviewed here.
+      </p>
 
-${
-pendingPayments.length
+    </div>
 
-?pendingPayments
-.map(
-p=>`
+    <div>
 
-<div class="admin-row">
+      ${
+        pendingPayments.length
 
-<div>
+        ? pendingPayments.map(function(p){
 
-<b>
-${escapeHTML(p.name)}
-</b>
+            return `
 
-<small>
-${escapeHTML(p.memberId)}
-•
-${escapeHTML(p.months)}
-</small>
+              <div class="admin-row">
 
-</div>
+                <div>
 
-<div class="actions">
+                  <b>
+                    ${escapeHtml(p.name || "")}
+                  </b>
 
-<button
-class="small-btn approve"
-onclick="verifyPayment(
-'${escapeHTML(p.id)}',
-'approved'
-)">
-Approve
-</button>
+                  <small>
+                    ${escapeHtml(p.memberId || "")}
+                    •
+                    ${escapeHtml(p.months || "")}
+                  </small>
 
-<button
-class="small-btn reject"
-onclick="verifyPayment(
-'${escapeHTML(p.id)}',
-'rejected'
-)">
-Reject
-</button>
+                </div>
 
-</div>
+                <div class="actions">
 
-</div>
+                  <button
+                    class="small-btn approve"
+                    onclick="verifyPayment('${escapeAttr(p.id)}','approved')">
+                    Approve
+                  </button>
 
-`
-)
-.join("")
+                  <button
+                    class="small-btn reject"
+                    onclick="verifyPayment('${escapeAttr(p.id)}','rejected')">
+                    Reject
+                  </button>
 
-:`
-<div class="quote-card">
-<p>No pending payments.</p>
-</div>
-`
+                </div>
+
+              </div>
+
+            `;
+
+          }).join("")
+
+        : `
+          <div class="quote-card">
+            <p>No pending payments.</p>
+          </div>
+        `
+      }
+
+    </div>
+  `;
+
 }
 
-</div>
-`;
-}
 
 async function verifyPayment(id,status){
 
-if(!CONFIG.appsScriptUrl){
+  if(!CONFIG.appsScriptUrl){
 
-showToast(
-"Connect Apps Script to verify real payments."
-);
+    showToast(
+      "Apps Script is not connected."
+    );
 
-return;
+    return;
+  }
+
+  try{
+
+    const r=await fetch(
+      CONFIG.appsScriptUrl,
+      {
+        method:"POST",
+        body:JSON.stringify({
+          action:"verifyPayment",
+          id:id,
+          status:status
+        })
+      }
+    );
+
+    const j=await r.json();
+
+    if(!j.ok){
+      throw new Error(
+        j.message || "Update failed"
+      );
+    }
+
+    pendingPayments=
+      pendingPayments.filter(function(x){
+        return x.id!==id;
+      });
+
+    renderAdmin();
+
+    showToast("Updated.");
+
+  }catch(e){
+
+    console.error(e);
+
+    showToast(
+      "Could not update payment."
+    );
+
+  }
+
 }
 
-try{
 
-const r=
-await fetch(
-CONFIG.appsScriptUrl,
-{
-method:"POST",
-body:JSON.stringify({
-action:"verifyPayment",
-id,
-status
-})
-}
-);
-
-const j=
-await r.json();
-
-if(!j.ok)
-throw Error();
-
-pendingPayments=
-pendingPayments.filter(
-x=>x.id!==id
-);
-
-renderAdmin();
-
-showToast(
-"Updated."
-);
-
-}catch(e){
-
-showToast(
-"Could not update payment."
-);
-
-}
-}
+/* =========================================================
+   LOAD GOOGLE SHEET DATA
+========================================================= */
 
 async function loadRemoteData(){
 
-try{
+  try{
 
-const r=
-await fetch(
-CONFIG.appsScriptUrl+
-"?action=bootstrap",
-{
-cache:"no-store"
-}
-);
+    const r=await fetch(
+      CONFIG.appsScriptUrl+
+      "?action=bootstrap",
+      {
+        cache:"no-store"
+      }
+    );
 
-const j=
-await r.json();
+    const j=await r.json();
 
-if(!j.ok){
+    if(!j.ok){
 
-console.warn(
-"Backend returned an error:",
-j
-);
+      console.warn(
+        "Backend error:",
+        j.message
+      );
 
-return;
-}
+      return;
+    }
 
-if(
-Array.isArray(j.members)&&
-j.members.length
-){
+    /*
+      GENERAL MEMBERS
+    */
 
-members=
-j.members;
+    if(
+      Array.isArray(j.members) &&
+      j.members.length
+    ){
 
-}
+      members=j.members.map(function(m){
 
-if(
-Array.isArray(j.trust)&&
-j.trust.length
-){
+        return {
 
-trustMembers=
-j.trust.map(
-m=>({
+          id:String(m.id || ""),
 
-id:String(
-m.id||
-m.memberId||
-""
-),
+          name:String(m.name || ""),
 
-role:String(
-m.role||
-""
-),
+          email:String(m.email || ""),
 
-name:String(
-m.name||
-""
-),
+          phone:String(m.phone || ""),
 
-email:String(
-m.email||
-""
-),
+          photo:getPhotoUrl(m.photo),
 
-phone:String(
-m.phone||
-""
-),
+          paid:Number(m.paid || 0),
 
-photo:String(
-m.photo||
-""
-)
+          due:Number(m.due || 0)
 
-})
-);
+        };
 
-}
+      });
 
-if(
-Array.isArray(j.books)
-){
+    }
 
-books=
-j.books;
 
-}
+    /*
+      TRUST MEMBERS
 
-renderMembers();
+      Code.gs must return j.trust.
+    */
 
-renderTrust();
+    if(
+      Array.isArray(j.trust) &&
+      j.trust.length
+    ){
 
-renderBooks();
+      trustMembers=j.trust.map(function(m){
 
-}catch(e){
+        return {
 
-console.warn(
-"Remote data unavailable",
-e
-);
+          id:String(m.id || ""),
 
-}
-}
+          role:String(m.role || ""),
 
-function getBookCoverUrl(url){
+          name:String(m.name || ""),
 
-if(!url)
-return"";
+          email:String(m.email || ""),
 
-url=
-String(url).trim();
+          phone:String(m.phone || ""),
 
-if(
-url.startsWith("assets/")||
-url.startsWith("./assets/")
-)
-return url;
+          photo:getPhotoUrl(m.photo)
 
-if(
-url.includes(
-"drive.google.com/thumbnail"
-)
-)
-return url;
+        };
 
-let m=
-url.match(
-/\/file\/d\/([^/?#]+)/
-);
+      });
 
-if(m&&m[1]){
+    }
 
-return(
-"https://drive.google.com/thumbnail?id="+
-encodeURIComponent(m[1])+
-"&sz=w1200"
-);
+
+    /*
+      BOOKS
+    */
+
+    if(Array.isArray(j.books)){
+
+      books=j.books;
+
+    }
+
+
+    renderMembers();
+    renderTrust();
+    renderBooks();
+
+  }catch(e){
+
+    console.warn(
+      "Remote data unavailable:",
+      e
+    );
+
+  }
 
 }
 
-m=
-url.match(
-/[?&]id=([^&#]+)/
-);
 
-if(
-m&&
-m[1]&&
-url.includes("drive.google.com")
-){
-
-return(
-"https://drive.google.com/thumbnail?id="+
-encodeURIComponent(m[1])+
-"&sz=w1200"
-);
-
-}
-
-if(
-url.includes("drive.google.com/uc")
-)
-return url;
-
-return url;
-}
+/* =========================================================
+   BOOKS
+========================================================= */
 
 function renderBooks(){
 
-const grid=
-document.getElementById(
-"booksGrid"
-);
+  const grid=
+    document.getElementById("booksGrid");
 
-if(!grid)return;
+  if(!grid)return;
 
-if(!books.length){
+  if(!books.length){
 
-grid.innerHTML=`
-<div class="quote-card">
-<p>No books available yet.</p>
-</div>
-`;
+    grid.innerHTML="";
 
-return;
+    return;
+  }
+
+  grid.innerHTML=books.map(function(b){
+
+    return `
+
+      <article class="book-card">
+
+        <div class="book-cover">
+          PDF
+        </div>
+
+        <div>
+
+          <span>
+            ${escapeHtml(b.category || "BOOK")}
+          </span>
+
+          <h3>
+            ${escapeHtml(b.title || "")}
+          </h3>
+
+          <p>
+            ${
+              escapeHtml(
+                b.description ||
+                "Islamic book / PDF resource"
+              )
+            }
+          </p>
+
+          <a
+            class="text-btn"
+            href="${escapeAttr(b.url || "#")}"
+            target="_blank"
+            rel="noopener">
+            Read book →
+          </a>
+
+        </div>
+
+      </article>
+
+    `;
+
+  }).join("");
+
 }
 
-grid.innerHTML=
-books
-.map(
-b=>{
 
-const cover=
-getBookCoverUrl(
-b.cover_url||
-b.coverUrl||
-b.cover||
-""
-);
+/* =========================================================
+   SAFE HTML HELPERS
+========================================================= */
 
-const title=
-escapeHTML(
-b.title||
-"Untitled Book"
-);
+function escapeHtml(value){
 
-const cat=
-escapeHTML(
-b.category||
-"BOOK"
-);
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
-const desc=
-escapeHTML(
-b.description||
-"Islamic book / PDF resource"
-);
-
-const url=
-escapeHTML(
-b.url||
-""
-);
-
-const coverHtml=
-cover
-
-?`
-<div
-class="book-cover book-cover-image">
-
-<img
-src="${escapeHTML(cover)}"
-alt="${title} cover"
-loading="lazy"
-onerror="
-this.onerror=null;
-this.parentElement.className='book-cover book-cover-fallback';
-this.parentElement.innerHTML='PDF';
-">
-
-</div>
-`
-
-:`
-<div
-class="book-cover book-cover-fallback">
-PDF
-</div>
-`;
-
-return `
-
-<article class="book-card">
-
-${coverHtml}
-
-<div>
-
-<span>
-${cat}
-</span>
-
-<h3>
-${title}
-</h3>
-
-<p>
-${desc}
-</p>
-
-${
-url
-?`
-<a
-class="text-btn"
-href="${url}"
-target="_blank"
-rel="noopener noreferrer">
-Read book →
-</a>
-`
-:""
 }
 
-</div>
 
-</article>
+function escapeAttr(value){
 
-`;
-}
-)
-.join("");
+  return escapeHtml(value);
+
 }
